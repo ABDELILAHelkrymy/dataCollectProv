@@ -12,18 +12,18 @@
     <div class="collapse navbar-collapse  w-auto " id="sidenav-collapse-main">
         <ul class="navbar-nav">
             <li class="nav-item">
-                    <a class="nav-link
+                <a class="nav-link
                     <?php
                     echo 'dashboard' === $route ? 'active' : '';
                     ?>
                     " href="<?php echo "/dashboard" ?>">
-                        <div
-                            class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                            <i class="bx bxs-dashboard text-primary text-sm opacity-10"></i>
-                        </div>
-                        <span class="nav-link-text ms-1">Tableau de bord</span>
-                    </a>
-                </li>
+                    <div
+                        class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                        <i class="bx bxs-dashboard text-primary text-sm opacity-10"></i>
+                    </div>
+                    <span class="nav-link-text ms-1">Tableau de bord</span>
+                </a>
+            </li>
             <li class="nav-item">
                 <a class="nav-link
                 <?php
@@ -34,7 +34,7 @@
                         class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
                         <i class="bx bxs-group text-primary text-sm opacity-10"></i>
                     </div>
-                    <span class="nav-link-text ms-1">Comptes</span>
+                    <span class="nav-link-text ms-1"></span>
                 </a>
             </li>
         </ul>

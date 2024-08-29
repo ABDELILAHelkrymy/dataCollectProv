@@ -8,7 +8,7 @@ ob_start();
             <div class="card ">
                 <div class="card-header pb-0 p-3">
                     <div class="d-flex justify-content-between">
-                        <h6 class="mb-2">Arrivées recentes</h6>
+                        <h6 class="mb-2">Tableau de Board</h6>
                     </div>
                 </div>
                 <div class="table-responsive">
@@ -25,14 +25,14 @@ ob_start();
                                             nombre de ménagère résensé</th>
                                         <th
                                             class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
-                                            Cumul    
+                                            Cumul
                                         </th>
                                         <th
                                             class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
                                             Nombre de famille résensés</th>
                                         <th
                                             class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">
-                                            Cumul    
+                                            Cumul
                                         </th>
                                     </tr>
                                 </thead>
@@ -40,7 +40,8 @@ ob_start();
                                     <td>
                                         <div class="d-flex px-2 py-1">
                                             <div>
-                                                <img src="assets/img/team-2.jpg" class="avatar avatar-sm me-3" alt="user1">
+                                                <img src="assets/img/team-2.jpg" class="avatar avatar-sm me-3"
+                                                    alt="user1">
                                             </div>
                                             <div class="d-flex flex-column justify-content-center">
                                                 <h6 class="mb-0 text-sm">AAL 1</h6>

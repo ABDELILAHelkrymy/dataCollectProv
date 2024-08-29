@@ -7,17 +7,12 @@ use core\Entity;
 class User extends Entity
 {
     protected $id;
-    protected $firstname;
-    protected $lastname;
     protected $username;
     protected string $password = '';
     protected $roleId;
+    protected $AALId;
     protected $createdAt;
     protected $updatedAt;
-    protected $serviceId;
-
-    protected $firstconnection;
-    protected $firstconnectionAt;
 
     public function __construct($userData)
     {

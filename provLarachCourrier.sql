@@ -9,6 +9,29 @@ START TRANSACTION;
 
 SET
   time_zone = "+00:00";
+  
+
+-- Table `districts`
+CREATE TABLE
+  IF NOT EXISTS `districts` (
+    `id` int NOT NULL AUTO_INCREMENT,
+    `created_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    `updated_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    `name` varchar(50) NOT NULL,
+    PRIMARY KEY (`id`)
+  ) ENGINE = InnoDB AUTO_INCREMENT = 1 DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_unicode_ci;
+
+-- Table `AALs`
+CREATE TABLE
+  IF NOT EXISTS `AALs` (
+    `id` int NOT NULL AUTO_INCREMENT,
+    `created_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    `updated_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    `name` varchar(50) NOT NULL,
+    `district_id` int NOT NULL,
+    PRIMARY KEY (`id`),
+    FOREIGN KEY (`district_id`) REFERENCES `districts` (`id`)
+  ) ENGINE = InnoDB AUTO_INCREMENT = 1 DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_unicode_ci;
 
 -- Table `roles`
 CREATE TABLE
@@ -28,80 +51,60 @@ CREATE TABLE
     `updated_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     `username` varchar(50) NOT NULL,
     `password` varchar(255) NOT NULL,
-    `role_id` int NOT NULL,
+    `aal_id` int,
+    `role_id` int,
     PRIMARY KEY (`id`),
     UNIQUE KEY `username` (`username`),
+    FOREIGN KEY (`aal_id`) REFERENCES `AALs` (`id`),
     FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`)
   ) ENGINE = InnoDB AUTO_INCREMENT = 1 DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_unicode_ci;
 
--- Table `districts`
+-- Table `agents`
 
 CREATE TABLE
-  IF NOT EXISTS `district` (
+  IF NOT EXISTS `agents` (
     `id` int NOT NULL AUTO_INCREMENT,
     `created_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     `updated_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    `nom` varchar(50) NOT NULL,
-    PRIMARY KEY (`id`)
-  ) ENGINE = InnoDB AUTO_INCREMENT = 1 DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_unicode_ci;
-
--- Table `AALs`
-
-CREATE TABLE
-  IF NOT EXISTS `AAL` (
-    `id` int NOT NULL AUTO_INCREMENT,
-    `created_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    `updated_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    `nom` varchar(50) NOT NULL,
-    `district_id` int NOT NULL,
+    `firstname` varchar(50) NOT NULL,
+    `lastname` varchar(50) NOT NULL,
+    `phone` varchar(50) NOT NULL,
+    `aal_id` int,
     PRIMARY KEY (`id`),
-    FOREIGN KEY (`district_id`) REFERENCES `district` (`id`)
-  ) ENGINE = InnoDB AUTO_INCREMENT = 1 DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_unicode_ci;
-
--- Table `Agents`
-
-CREATE TABLE
-  IF NOT EXISTS `Agent` (
-    `id` int NOT NULL AUTO_INCREMENT,
-    `created_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    `updated_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    `nom` varchar(50) NOT NULL,
-    `prenom` varchar(50) NOT NULL,
-    `telephone` varchar(50) NOT NULL,
-    `email` varchar(50) NOT NULL,
-    `AAL_id` int NOT NULL,
-    PRIMARY KEY (`id`),
-    FOREIGN KEY (`AAL_id`) REFERENCES `AAL` (`id`)
+    FOREIGN KEY (`aal_id`) REFERENCES `AALs` (`id`)
   ) ENGINE = InnoDB AUTO_INCREMENT = 1 DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_unicode_ci;
 
 -- Table `Datas`
-
 CREATE TABLE
-  IF NOT EXISTS `Data` (
+  IF NOT EXISTS `datas` (
     `id` int NOT NULL AUTO_INCREMENT,
     `created_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     `updated_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    `list_douar` int NOT NULL,
+    `list_douar` TEXT NOT NULL,
     `nbr_menage` int NOT NULL,
     `nbr_famille` int NOT NULL,
     `agent_id` int NOT NULL,
     PRIMARY KEY (`id`),
-    FOREIGN KEY (`agent_id`) REFERENCES `Agent` (`id`)
+    FOREIGN KEY (`agent_id`) REFERENCES `agents` (`id`)
   ) ENGINE = InnoDB AUTO_INCREMENT = 1 DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_unicode_ci;
 
--- // hash password after insert using trigger
-DELIMITER $$
-CREATE TRIGGER `hash_password` BEFORE INSERT ON `users` FOR EACH ROW
-BEGIN
-  -- don't use md5  or sha1 for password hashing use bcrypt or argon2
-  SET NEW.password = SHA2(NEW.password, 256);
-END$$
-DELIMITER ;
+
+INSERT INTO `districts` (`name`) VALUES ('Larache'), ('Ksar El Kebir'), ('laouamra'), ('tazroute');
+
+INSERT INTO `AALs` (`name`, `district_id`) VALUES ('AAL1', 1), ('AAL2', 1), ('AAL3', 2), ('AAL4', 2), ('AAL5', 3), ('AAL6', 3), ('AAL7', 4), ('AAL8', 4);
 
 INSERT INTO `roles` (`nom`) VALUES ('agent'), ('sg_gouv');
 
-INSERT INTO `users` (`username`, `password`, `role_id`) VALUES ('agent', 'agent', 1), ('sg_gouv', 'sg_gouv', 2);
+INSERT INTO `users` (`username`, `password`, `aal_id`, `role_id`) 
+VALUES ('agent', '$2a$12$Ti6lncbmo99HPFNgQSnh8O2xu2F9TPJAV1HOk05ImPAMNW2FKDiXK', 1, 1), 
+        ('sg_gouv', '$2a$12$ev2wT1LbkSy3CLbId3.r9eYZ4O.lzybEBLEz/xcTBGvxZOEL06Uvy', 1, 2);
 
-INSERT INTO `district` (`nom`) VALUES ('Larache'), ('Ksar El Kebir'), ('laouamra'), ('Sidi Kacem');
-
-INSERT INTO `AAL` (`nom`, `district_id`) VALUES ('AAL1', 1), ('AAL2', 1), ('AAL3', 2), ('AAL4', 2), ('AAL5', 3), ('AAL6', 3), ('AAL7', 4), ('AAL8', 4);
+INSERT INTO `agents` (`firstname`, `lastname`, `phone`, `aal_id`)
+VALUES ('agent1', 'agent1', '0612345678', 1),
+        ('agent2', 'agent2', '0612345678', 2),
+        ('agent3', 'agent3', '0612345678', 3),
+        ('agent4', 'agent4', '0612345678', 4),
+        ('agent5', 'agent5', '0612345678', 4),
+        ('agent6', 'agent6', '0612345678', 3),
+        ('agent7', 'agent7', '0612345678', 2),
+        ('agent8', 'agent8', '0612345678', 1);

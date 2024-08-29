@@ -3,127 +3,77 @@ $title = "Courriers Arrivée";
 ob_start();
 ?>
 <div class="container-fluid py-6">
-    <div class="row">
-        <div class="col-12">
+    <div class="row justify-content-center">
+        <div class="col-10">
             <div class="card mb-4">
-                <div class="card-header pb-0">
+                <div class="card-header pb-0 mb-3">
                     <div class="row">
-                        <div class="col-6 d-flex align-items-center">
-                            <h6 class="mb-0">Comptes</h6>
+                        <div class="col-4 d-flex align-items-center justify-content-start">
+                            <div>
+                                <h6 class="mb-0"><?= $date ?></h6>
+                            </div>
+                            <div class="mx-3">
+                                <h6 class="mb-0"> : تاريخ اليوم</h6>
+                            </div>
                         </div>
-                        <div class="col-6 text-end">
-                            <a class="btn bg-gradient-primary mb-0" href="/comptes/nouveau">
-                                <i class='bx bx-user-plus'></i>&nbsp;&nbsp;Ajouter</a>
-                            <a class="btn bg-gradient-primary mb-0 export-compte" data-bs-toggle="modal"
-                                data-bs-target="#modal-notification" href="javascript:;">
-                                <i class='bx bxs-file-export'></i>&nbsp;&nbsp;Exporter CSV</a>
+                        <div class="col-8 text-end">
+                            <h3 class="mb-0">ملأ البيانات الخاصة بإحصاء السكن والسكنى</h3>
                         </div>
                     </div>
                 </div>
-                <div class="card-body px-0 pt-0 pb-2">
-                    <div class="table-responsive p-0">
-                        <table class="table align-items-center mb-0">
-                            <thead>
-                                <tr>
-                                    <th class="text-secondary opacity-7"></th>
-                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
-                                        data-sort="numeroCompte">
-                                        Numéro <i class='bx bx-sort-alt-2 sort-icon'></i>
-                                    </th>
-                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
-                                        data-sort="createdAt">
-                                        Date Demande <i class='bx bx-sort-alt-2 sort-icon'></i>
-                                    </th>
-                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
-                                        data-sort="dateEmbauche">
-                                        Date d&#39;embauche <i class='bx bx-sort-alt-2 sort-icon'></i>
-                                    </th>
-                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
-                                        data-sort="sitePhysique">
-                                        Centre / Externe <i class='bx bx-sort-alt-2 sort-icon'></i>
-                                    </th>
-                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
-                                        data-sort="compte">
-                                        Compte <i class='bx bx-sort-alt-2 sort-icon'></i>
-                                    </th>
-                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
-                                        data-sort="status">
-                                        Status <i class='bx bx-sort-alt-2 sort-icon'></i>
-                                    </th>
-                                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
-                                        data-sort="dateStatus">
-                                        Date Status <i class='bx bx-sort-alt-2 sort-icon'></i>
-                                    </th>
-                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2"
-                                        data-sort="natureContrat">
-                                        Objet Demande <i class='bx bx-sort-alt-2 sort-icon'></i>
-                                    </th>
-                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
-                                        data-sort="createdBy">
-                                        Auteur <i class='bx bx-sort-alt-2 sort-icon'></i>
-                                    </th>
-                                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2"
-                                        data-sort="refGala">
-                                        Référence GALA <i class='bx bx-sort-alt-2 sort-icon'></i>
-                                    </th>
-                                </tr>
-                            </thead>
+                <div class="card">
+                    <div class="card-body">
+                        <form method="POST">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group text-end">
+                                        <label for="example-text-input"
+                                            class="form-control-label text-xl-center">الدواوير
+                                            المحصية</label>
+                                        <input class="form-control" id="list_douar" name="list_douar" type="text"
+                                            value="" required>
+                                    </div>
+                                    <p class="error-prenom text-danger text-xs error-text"></p>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group text-end">
+                                        <label for="example-text-input" class="form-control-label">إسم عون
+                                            السلطة</label>
+                                        <select class="form-select" name="agent_id" required>
+                                            <option value="">إختر عون السلطة</option>
+                                            <?php foreach ($agents as $agent): ?>
+                                                <option value="<?= $agent->getId() ?>">
+                                                    <?= $agent->getFirstname() . ' ' . $agent->getLastname() ?>
+                                                </option>
+                                            <?php endforeach; ?>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group text-end">
+                                        <label for="example-text-input" class="form-control-label">عدد المساكن
+                                            المحصية</label>
+                                        <input class="form-control" name="nbr_menage" type="number" value="" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group text-end">
+                                        <label for="example-text-input" class="form-control-label">عدد الأسر
+                                            المحصية</label>
+                                        <input class="form-control" name="nbr_famille" type="number" value="" required>
+                                    </div>
+                                </div>
+                            </div>
 
-                            <tbody>
-                            
-                            </tbody>
-                        </table>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <button type="submit"
+                                        class="btn bg-gradient-success text-2xl w-30 mt-4 mb-0 compte-btn">أضف</button>
+                                </div>
+                            </div>
+                        </form>
                     </div>
                 </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="modal fade" id="modal-notification" tabindex="-1" role="dialog" aria-labelledby="modal-notification"
-    aria-hidden="true">
-    <div class="modal-dialog modal-danger modal-dialog-centered modal-" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Exporter CSV</h5>
-            </div>
-            <div class="modal-body">
-                <div class="col-md-12">
-                    <div class="form-group input-export-csv">
-                        <div class="d-flex my-3">
-                            <h6 class="mb-0">Exporter toutes les demandes</h6>
-                            <div class="form-check form-switch ps-0 ms-auto my-auto">
-                                <input class="form-check-input mt-1 ms-auto export-compte export-all" type="checkbox"
-                                    name="all" id="navbarFixed" value="all">
-                            </div>
-                        </div>
-                        <div class="d-flex my-3">
-                            <h6 class="mb-0">Exporter les demandes par date</h6>
-                            <div class="form-check form-switch ps-0 ms-auto my-auto">
-                                <input class="form-check-input mt-1 ms-auto export-compte export-by-date"
-                                    type="checkbox" name="byDate" id="navbarFixed" value="byDate">
-                            </div>
-                        </div>
-                        <div class="d-flex justify-content-between my-3 form-dates d-none">
-                            <div class="col-5">
-                                <label for="" class="form-control-label">Date début</label>
-                                <input type="date" class="form-control date-start" placeholder="Date de début"
-                                    name="date-start" required>
-                            </div>
-                            <div class="col-5">
-                                <label for="" class="form-control-label">Date fin (optionnel)</label>
-                                <input type="date" name="date-end" class="form-control date-end"
-                                    placeholder="Date de fin">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="submit" class="btn btn-success export-compte-btn" data-bs-dismiss="modal">
-                    Exporter
-                </button>
-                <button type="button" class="btn btn-link ml-auto" data-bs-dismiss="modal">fermer</button>
             </div>
         </div>
     </div>

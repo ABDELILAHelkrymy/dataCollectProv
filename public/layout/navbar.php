@@ -29,7 +29,7 @@
                     <span class="text-white bonjour-text font-weight-bold">Bonjour</span>
                     <a href="javascript:;" class="nav-link text-white showProfileDropdown font-weight-bold px-0">
                         <span class="d-sm-inline d-none">
-                            <?php echo $_SESSION['user']['firstname'] . ' ' . $_SESSION['user']['lastname'] ?>
+                            <?php echo $_SESSION['user']['username'] ?>
                         </span>
                     </a>
 
