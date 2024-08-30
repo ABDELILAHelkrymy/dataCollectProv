@@ -148,7 +148,8 @@ INSERT INTO `roles` (`nom`) VALUES ('agent'), ('sg_gouv');
 
 INSERT INTO `users` (`username`, `password`, `aal_id`, `role_id`) 
 VALUES ('agent', '$2a$12$Ti6lncbmo99HPFNgQSnh8O2xu2F9TPJAV1HOk05ImPAMNW2FKDiXK', 1, 1), 
-        ('sg_gouv', '$2a$12$ev2wT1LbkSy3CLbId3.r9eYZ4O.lzybEBLEz/xcTBGvxZOEL06Uvy', 1, 2);
+        ('sg', '$2a$12$CyOfs02.0Z6mdXTKY6Pthe6as3ax3Ba1ZtYkBObAMK.4Ai/iu3s9a', null, 2),
+        ('gouv', '$2a$12$n4n6/mKG.evIPrkEAREj/OyMJwfacvirBGLtiYpbgTsJKqdwikpXm', null, 2);
 
 INSERT INTO `agents` (`firstname`, `lastname`, `phone`, `aal_id`)
 VALUES ('agent1', 'agent1', '0612345678', 1),

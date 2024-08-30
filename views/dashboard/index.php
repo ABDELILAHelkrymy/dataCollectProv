@@ -25,6 +25,7 @@ ob_start();
                                         <th class="text-uppercase text-secondary text-sm font-weight-bolder opacity-7 ps-2">Cumul</th>
                                         <th class="text-uppercase text-secondary text-sm font-weight-bolder opacity-7 ps-2">Nombre de famille recensés</th>
                                         <th class="text-uppercase text-secondary text-sm font-weight-bolder opacity-7 ps-2">Cumul</th>
+                                        <th class="text-uppercase text-secondary text-sm font-weight-bolder opacity-7 ps-2">Observations</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -57,6 +58,7 @@ ob_start();
                                                     <td><p class="text-md text-white text-bold font-weight-bold mb-0">
                                                         <?= $districtTotals[$currentDistrict]["cumulFamille"] ?? 0 ?>
                                                     </p></td>
+                                                    <td></td>
                                                 </tr>
                                                 <?php
                                             }
@@ -76,6 +78,7 @@ ob_start();
                                         <td><p class="text-sm font-weight-bold mb-0"><?=$newData[$allId]->cumulMenage ?? 0?></p></td>
                                         <td><p class="text-sm font-weight-bold mb-0"><?=$newData[$allId]->nbrFamille ?? 0?></p></td>
                                         <td><p class="text-sm font-weight-bold mb-0"><?=$newData[$allId]->cumulFamille ?? 0?></p></td>
+                                        <td><p class="text-sm font-weight-bold mb-0"></p></td>
                                     </tr>
                                     <?php endforeach; ?>
 
@@ -103,6 +106,7 @@ ob_start();
                                             <td><p class="text-md text-whitefont-weight-bold mb-0">
                                                 <?= $districtTotals[$currentDistrict]["cumulFamille"] ?? 0 ?>
                                             </p></td>
+                                            <td></td>
                                         </tr>
                                         <?php
                                     }
@@ -120,6 +124,7 @@ ob_start();
                                         <td><p class="text-md text-white font-weight-bold mb-0">1</p></td>
                                         <td><p class="text-md text-white font-weight-bold mb-0">1</p></td>
                                         <td><p class="text-md text-white font-weight-bold mb-0">1</p></td>
+                                        <td></td>
                                     </tr>
                                 </tbody>
                             </table>
