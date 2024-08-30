@@ -82,12 +82,13 @@ CREATE TABLE
     `updated_at` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     `list_douar` TEXT NOT NULL,
     `nbr_menage` int NOT NULL,
+    `cumul_menage` int,
     `nbr_famille` int NOT NULL,
+    `cumul_famille` int,
     `agent_id` int NOT NULL,
     PRIMARY KEY (`id`),
     FOREIGN KEY (`agent_id`) REFERENCES `agents` (`id`)
   ) ENGINE = InnoDB AUTO_INCREMENT = 1 DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_unicode_ci;
-
 
 INSERT INTO `districts` (`name`)
 VALUES 

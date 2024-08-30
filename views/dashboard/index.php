@@ -10,7 +10,7 @@ ob_start();
                     <div class="d-flex justify-content-between">
                         <h6 class="mb-2">Tableau de Bord</h6>
                         <div class="form-group d-flex">
-                            <input class="form-control" name="date" type="date" value="<?= date('Y-m-d') ?>" required>
+                            <input class="form-control date_collect" name="date" type="date" value="<?= $date ?? date("Y-m-d") ?>">
                         </div>
                     </div>
                 </div>
@@ -31,8 +31,8 @@ ob_start();
                                     <?php 
                                     $currentDistrict = null;
                                     $districtTotals = [];
-
                                     foreach ($aals as $aal) : 
+                                        $allId = $aal->getId() ?? null;
                                         if ($currentDistrict !== $aal->getDistrictId()) {
                                             if ($currentDistrict !== null) {
                                                 // Print the total for the previous district
@@ -45,10 +45,18 @@ ob_start();
                                                             </div>
                                                         </div>
                                                     </td>
-                                                    <td><p class="text-md text-white text-bold font-weight-bold mb-0">1</p></td>
-                                                    <td><p class="text-md text-white text-bold font-weight-bold mb-0">1</p></td>
-                                                    <td><p class="text-md text-white text-bold font-weight-bold mb-0">1</p></td>
-                                                    <td><p class="text-md text-white text-bold font-weight-bold mb-0">1</p></td>
+                                                    <td><p class="text-md text-white text-bold font-weight-bold mb-0">
+                                                        <?= $districtTotals[$currentDistrict]["nbrMenage"] ?? 0 ?>
+                                                    </p></td>
+                                                    <td><p class="text-md text-white text-bold font-weight-bold mb-0">
+                                                        <?= $districtTotals[$currentDistrict]["cumulMenage"] ?? 0 ?>
+                                                    </p></td>
+                                                    <td><p class="text-md text-white text-bold font-weight-bold mb-0">
+                                                        <?= $districtTotals[$currentDistrict]["nbrFamille"] ?? 0 ?>
+                                                    </p></td>
+                                                    <td><p class="text-md text-white text-bold font-weight-bold mb-0">
+                                                        <?= $districtTotals[$currentDistrict]["cumulFamille"] ?? 0 ?>
+                                                    </p></td>
                                                 </tr>
                                                 <?php
                                             }
@@ -64,10 +72,10 @@ ob_start();
                                                 </div>
                                             </div>
                                         </td>
-                                        <td><p class="text-sm font-weight-bold mb-0">1</p></td>
-                                        <td><p class="text-sm font-weight-bold mb-0">1</p></td>
-                                        <td><p class="text-sm font-weight-bold mb-0">1</p></td>
-                                        <td><p class="text-sm font-weight-bold mb-0">1</p></td>
+                                        <td><p class="text-sm font-weight-bold mb-0"><?=$newData[$allId]->nbrMenage ?? 0?></p></td>
+                                        <td><p class="text-sm font-weight-bold mb-0"><?=$newData[$allId]->cumulMenage ?? 0?></p></td>
+                                        <td><p class="text-sm font-weight-bold mb-0"><?=$newData[$allId]->nbrFamille ?? 0?></p></td>
+                                        <td><p class="text-sm font-weight-bold mb-0"><?=$newData[$allId]->cumulFamille ?? 0?></p></td>
                                     </tr>
                                     <?php endforeach; ?>
 
@@ -83,10 +91,18 @@ ob_start();
                                                     </div>
                                                 </div>
                                             </td>
-                                            <td><p class="text-md text-white font-weight-bold mb-0">1</p></td>
-                                            <td><p class="text-md text-white font-weight-bold mb-0">1</p></td>
-                                            <td><p class="text-md text-white font-weight-bold mb-0">1</p></td>
-                                            <td><p class="text-md text-whitefont-weight-bold mb-0">1</p></td>
+                                            <td><p class="text-md text-white font-weight-bold mb-0">
+                                                <?= $districtTotals[$currentDistrict]["nbrMenage"] ?? 0 ?>
+                                            </p></td>
+                                            <td><p class="text-md text-white font-weight-bold mb-0">
+                                                <?= $districtTotals[$currentDistrict]["cumulMenage"] ?? 0 ?>
+                                            </p></td>
+                                            <td><p class="text-md text-white font-weight-bold mb-0">
+                                                <?= $districtTotals[$currentDistrict]["nbrFamille"] ?? 0 ?>
+                                            </p></td>
+                                            <td><p class="text-md text-whitefont-weight-bold mb-0">
+                                                <?= $districtTotals[$currentDistrict]["cumulFamille"] ?? 0 ?>
+                                            </p></td>
                                         </tr>
                                         <?php
                                     }

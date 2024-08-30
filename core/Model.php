@@ -145,6 +145,29 @@ class Model
         return $this->getFormatedRecords($dbData);
     }
 
+    // function to search by query based on date exacly
+    public function getByQueryDate($column, $value)
+    {
+        $sql = "SELECT * FROM $this->table WHERE DATE($column) = DATE(:$column)";
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute([$column => $value]);
+        $dbData = $stmt->fetchAll();
+        return $this->getFormatedRecords($dbData);
+    }
+
+    // function to search by query based on date less than
+    public function getByQueryDateLessThan($column, $value)
+    {
+        $sql = "SELECT * FROM $this->table WHERE $column <= DATE(:$column)";
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute([$column => $value]);
+        $dbData = $stmt->fetchAll();
+        if (!$dbData) {
+            return [];
+        }
+        return $this->getFormatedRecords($dbData);
+    }
+
     protected function createEntity($dbData)
     {
         return new $this->entityClass($dbData);

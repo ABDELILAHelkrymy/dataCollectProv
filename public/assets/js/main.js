@@ -1128,4 +1128,9 @@ $(document).ready(function () {
   });
 
   handleSearchMaterielByTypeAndSortiDuStock();
+
+  $('.date_collect').on('change', function () {
+    date_collect = $(this).val();
+    window.location.href = `/dashboard?q=${date_collect}`;
+  });
 });

@@ -1,24 +1,15 @@
 <?php
-$title = "Courriers Arrivée";
+$date = date('Y-m-d');
+$title = $date . " : إحصاء السكن والسكنى - اليوم";
 ob_start();
 ?>
 <div class="container-fluid py-6">
     <div class="row justify-content-center">
         <div class="col-10">
-            <div class="card mb-4">
+            <div class="card mb-4 text-end">
                 <div class="card-header pb-0 mb-3">
                     <div class="row">
-                        <div class="col-4 d-flex align-items-center justify-content-start">
-                            <div>
-                                <h6 class="mb-0"><?= $date ?></h6>
-                            </div>
-                            <div class="mx-3">
-                                <h6 class="mb-0"> : تاريخ اليوم</h6>
-                            </div>
-                        </div>
-                        <div class="col-8 text-end">
-                            <h3 class="mb-0">ملأ البيانات الخاصة بإحصاء السكن والسكنى</h3>
-                        </div>
+                        <h3 class="mb-0">ملأ البيانات الخاصة بإحصاء السكن والسكنى</h3>
                     </div>
                 </div>
                 <div class="card">
@@ -28,7 +19,7 @@ ob_start();
                                 <div class="col-md-6">
                                     <div class="form-group text-end">
                                         <label for="example-text-input"
-                                            class="form-control-label text-xl-center">الدواوير
+                                            class="form-control-label text-xl-center">الدواوير / الأحياء
                                             المحصية</label>
                                         <input class="form-control" id="list_douar" name="list_douar" type="text"
                                             value="" required>
@@ -68,7 +59,7 @@ ob_start();
                             <div class="row">
                                 <div class="col-md-6">
                                     <button type="submit"
-                                        class="btn bg-gradient-success text-2xl w-30 mt-4 mb-0 compte-btn">أضف</button>
+                                        class="btn bg-gradient-success text-md w-30 mt-4 mb-0 compte-btn">أضف</button>
                                 </div>
                             </div>
                         </form>

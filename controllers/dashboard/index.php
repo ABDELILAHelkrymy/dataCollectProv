@@ -6,6 +6,7 @@ use models\DistrictModel;
 use models\DataModel;
 use models\AgentModel;
 
+$date = $this->request->get("q");
 
 $districtModel = new DistrictModel($this->db);
 $districts = $districtModel->getAll();
@@ -14,7 +15,11 @@ $aalModel = new AalModel($this->db);
 $aals = $aalModel->getAll();
 
 $dataModel = new DataModel($this->db);
-$datas = $dataModel->getAll();
+if($date) {
+    $datas = $dataModel->getByQueryDate("created_at", $date);
+} else {
+    $datas = $dataModel->getByQueryDate("created_at", date("Y-m-d"));
+}
 
 $agentModel = new AgentModel($this->db);
 $agents = $agentModel->getAll();
@@ -36,10 +41,30 @@ foreach ($agents as $agent) {
     }
 }
 
+$newData = [];
 foreach ($aals as $all) {
     foreach ($datas as $data) {
         if ($data->getAgentId()->getId() === $all->getId()) {
-            var_dump($data->getNbrMenage());
+            // make new array with aalId as key
+            $newData[$all->getId()] = $data;
         }
     }
+}
+
+// create new array with district as key and sum of data as value
+$districtTotals = [];
+foreach ($aals as $aal) {
+    $allId = $aal->getId() ?? null;
+    if (!isset($districtTotals[$aal->getDistrictId()])) {
+        $districtTotals[$aal->getDistrictId()] = [
+            "nbrMenage" => 0,
+            "cumulMenage" => 0,
+            "nbrFamille" => 0,
+            "cumulFamille" => 0,
+        ];
+    }
+    $districtTotals[$aal->getDistrictId()]["nbrMenage"] += $newData[$allId]->nbrMenage ?? 0;
+    $districtTotals[$aal->getDistrictId()]["cumulMenage"] += $newData[$allId]->cumulMenage ?? 0;
+    $districtTotals[$aal->getDistrictId()]["nbrFamille"] += $newData[$allId]->nbrFamille ?? 0;
+    $districtTotals[$aal->getDistrictId()]["cumulFamille"] += $newData[$allId]->cumulFamille ?? 0;
 }

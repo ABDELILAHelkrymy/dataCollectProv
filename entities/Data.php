@@ -11,6 +11,8 @@ class Data extends Entity
 
     protected $listDouar;
     protected $nbrMenage;
+    protected $cumulMenage;
     protected $nbrFamille;
+    protected $cumulFamille;
     protected $agentId;
 }
