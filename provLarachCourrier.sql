@@ -89,9 +89,59 @@ CREATE TABLE
   ) ENGINE = InnoDB AUTO_INCREMENT = 1 DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_unicode_ci;
 
 
-INSERT INTO `districts` (`name`) VALUES ('Larache'), ('Ksar El Kebir'), ('laouamra'), ('tazroute');
+INSERT INTO `districts` (`name`)
+VALUES 
+('(District) MOULAY ALI BOUGHALEB'),
+('(District) District Lamrina'),
+('(District) LALLA MENANA'),
+('(District) EL MAGHRIB EL JADID'),
+('(District) SIDI EL ARBI'),
+('(Cercle) LOUKOUS'),
+('(Cercle) MOULAY ABDESLAM BEN MACHICH'),
+('(Cercle) OUED AL MAKHAZINE');
 
-INSERT INTO `AALs` (`name`, `district_id`) VALUES ('AAL1', 1), ('AAL2', 1), ('AAL3', 2), ('AAL4', 2), ('AAL5', 3), ('AAL6', 3), ('AAL7', 4), ('AAL8', 4);
+INSERT INTO `AALs` (`name`, `district_id`)
+VALUES
+-- MOULAY ALI BOUGHALEB (district_id = 1)
+('(Annexe administrative) PREMIERE', 1),
+('(Annexe administrative) DEUXIEME', 1),
+('(Annexe administrative) SIXIEME', 1),
+
+-- District Lamrina (district_id = 2)
+('(Annexe administrative) TROISIEME', 2),
+('(Annexe administrative) QUATRIEME', 2),
+('(Annexe administrative) CINQUIEME', 2),
+
+-- LALLA MENANA (district_id = 3)
+('(Annexe administrative) PREMIERE', 3),
+('(Annexe administrative) DEUXIEME', 3),
+('(Annexe administrative) TROISIEME', 3),
+
+-- EL MAGHRIB EL JADID (district_id = 4)
+('(Annexe administrative) QUATRIEME', 4),
+('(Annexe administrative) CINQUIEME', 4),
+
+-- SIDI EL ARBI (district_id = 5)
+('(Annexe administrative) SIXIEME', 5),
+('(Annexe administrative) SEPTIEME', 5),
+
+-- LOUKOUS (district_id = 6)
+('(Caidat) LAAOUAMRA', 6),
+('(Caidat) QOLLA', 6),
+('(Caidat) SIDI SLAMA', 6),
+('(Caidat) TATOFT', 6),
+
+-- MOULAY ABDESLAM BEN MACHICH (district_id = 7)
+('(Caidat) AYACHA', 7),
+('(Caidat) BNI AROUSS', 7),
+('(Caidat) BNI GERFET', 7),
+('(Caidat) TAZROUTE', 7),
+
+-- OUED AL MAKHAZINE (district_id = 8)
+('(Caidat) OULAD OUCHIH SOUAKEN', 8),
+('(Caidat) RISSANA', 8),
+('(Caidat) SAHEL', 8),
+('(Caidat) SOUK TOLBA', 8);
 
 INSERT INTO `roles` (`nom`) VALUES ('agent'), ('sg_gouv');
 

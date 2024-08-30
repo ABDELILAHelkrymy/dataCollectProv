@@ -10,5 +10,5 @@ class Agent extends Entity
     protected $firstname;
     protected $lastname;
     protected $phone;
-    protected $AalId;
+    protected $aalId;
 }

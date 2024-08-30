@@ -132,10 +132,6 @@
   background-color: var(--bs-yellow);
 }
 
-.table-responsive {
-  max-height: 300px;
-}
-
 .sort-icon {
   cursor: pointer;
 }
