@@ -120,7 +120,9 @@ ob_start();
                                                 </p>
                                             </td>
                                             <td>
-                                                <p class="text-sm font-weight-bold mb-0"></p>
+                                                <p class="text-sm font-weight-bold mb-0 text-warning">
+                                                    <?= $newData[$allId]->observations ?? "" ?>
+                                                </p>
                                             </td>
                                         </tr>
                                     <?php endforeach; ?>

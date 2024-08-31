@@ -10,7 +10,7 @@ class User extends Entity
     protected $username;
     protected string $password = '';
     protected $roleId;
-    protected $AALId;
+    protected $aalId;
     protected $createdAt;
     protected $updatedAt;
 

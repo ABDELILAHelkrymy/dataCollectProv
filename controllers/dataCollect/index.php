@@ -19,9 +19,13 @@ function addData($request, $db)
     $viewVars['date'] = $date;
     $dataModel = new DataModel($db);
     $agentModel = new AgentModel($db);
-
-
-    $viewVars['agents'] = $agentModel->getAll();
+    $aal_id = $_SESSION['user']['aal_id'];
+    $viewVars['agents'] = $agentModel->getByQuery([
+        "aal_id" => [
+            "op" => "=",
+            "value" => $aal_id,
+        ]
+    ]);
 
     if ($request->isPost()) {
         $data = new Data($request->getPost());

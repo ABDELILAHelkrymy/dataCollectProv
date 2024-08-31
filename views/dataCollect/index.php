@@ -21,17 +21,17 @@ ob_start();
                                         <label for="example-text-input"
                                             class="form-control-label text-xl-center">الدواوير / الأحياء
                                             المحصية</label>
-                                        <input class="form-control" id="list_douar" name="list_douar" type="text"
-                                            value="" required>
+                                        <input class="form-control text-end" dir="rtl" id="list_douar" name="list_douar"
+                                            type="text" value="" required>
                                     </div>
                                     <p class="error-prenom text-danger text-xs error-text"></p>
                                 </div>
                                 <div class="col-md-6">
-                                    <div class="form-group text-end">
-                                        <label for="example-text-input" class="form-control-label">إسم عون
+                                    <div class="form-group">
+                                        <label for="example-text-input text-end" class="form-control-label">إسم عون
                                             السلطة</label>
                                         <select class="form-select" name="agent_id" required>
-                                            <option value="">إختر عون السلطة</option>
+                                            <option value="" selected disabled>إختر عون السلطة</option>
                                             <?php foreach ($agents as $agent): ?>
                                                 <option value="<?= $agent->getId() ?>">
                                                     <?= $agent->getFirstname() . ' ' . $agent->getLastname() ?>
@@ -44,19 +44,28 @@ ob_start();
                                     <div class="form-group text-end">
                                         <label for="example-text-input" class="form-control-label">عدد المساكن
                                             المحصية</label>
-                                        <input class="form-control" name="nbr_menage" type="number" value="" required>
+                                        <input class="form-control text-end" name="nbr_menage" type="number" value=""
+                                            required>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group text-end">
                                         <label for="example-text-input" class="form-control-label">عدد الأسر
                                             المحصية</label>
-                                        <input class="form-control" name="nbr_famille" type="number" value="" required>
+                                        <input class="form-control text-end" name="nbr_famille" type="number" value=""
+                                            required>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div class="form-group text-end">
+                                        <label for="example-text-input" class="form-control-label">ملاحظات</label>
+                                        <textarea class="form-control text-end" dir="rtl" name="observations"
+                                            rows="3"></textarea>
                                     </div>
                                 </div>
                             </div>
 
-                            <div class="row">
+                            <div class="row text-start">
                                 <div class="col-md-6">
                                     <button type="submit"
                                         class="btn bg-gradient-success text-md w-30 mt-4 mb-0 compte-btn">أضف</button>

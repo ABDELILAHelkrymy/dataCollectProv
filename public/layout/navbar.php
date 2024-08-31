@@ -11,25 +11,14 @@
         </nav>
         <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
             <div class="ms-md-auto pe-md-3 d-flex align-items-center search-bar">
-                <?php
-                $fields = ['Comptes', 'Matériels', 'Utilisateurs RH',];
-                if (in_array($title, $fields)): ?>
 
-                    <form method="get">
-                        <div class="input-group">
-                            <span class="input-group-text text-body"><i class="bx bx-search" aria-hidden="true"></i></span>
-                            <input type="text" name="q" class="form-control search-input" value="<?= $query ?? '' ?>"
-                                placeholder="Trouver...">
-                        </div>
-                    </form>
-                <?php endif; ?>
             </div>
             <ul class="navbar-nav  justify-content-end">
                 <li class="nav-item d-flex align-items-center">
-                        <a class="dropdown-item text-white log_out rounded-bottom py-2" href="javascript:;">
-                            <i class='bx bx-log-out-circle
+                    <a class="dropdown-item text-white log_out rounded-bottom py-2" href="javascript:;">
+                        <i class='bx bx-log-out-circle
                                 text-white text-2xl'></i>
-                        </a>
+                    </a>
                 </li>
             </ul>
         </div>
