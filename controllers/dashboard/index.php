@@ -17,8 +17,6 @@ $dataModel = new DataModel($this->db);
 
 $today = date("Y-m-d");
 $datas = $dataModel->getByQueryDate("created_at", $date ?? $today);
-$datasForCumul = $dataModel->getByQueryDateLessThan("created_at", $date ? $date . " 23:59:59" : $today . " 23:59:59");
-
 
 $agentModel = new AgentModel($this->db);
 $agents = $agentModel->getAll();
@@ -28,17 +26,12 @@ foreach ($aals as $aal) {
     $aal->setDistrictId($district);
 }
 
-// var_dump($aals);
+
 // populate aaLs into agents
 foreach ($agents as $agent) {
     $aale = $aalModel->getById($agent->getAalId());
     $agent->setAalId($aale);
     foreach ($datas as $data) {
-        if ($data->getAgentId() === $agent->getId()) {
-            $data->setAgentId($agent->getAalId());
-        }
-    }
-    foreach ($datasForCumul as $data) {
         if ($data->getAgentId() === $agent->getId()) {
             $data->setAgentId($agent->getAalId());
         }
@@ -54,24 +47,6 @@ foreach ($aals as $alle) {
     }
 }
 
-// create new array with all id as key to calculate total of nbr menage and nbr famille
-
-$newData1 = [];
-foreach ($aals as $aal) {
-    $cumulMenager = 0;
-    $cumulFamille = 0;
-    foreach ($datasForCumul as $data) {
-        if ($data->getAgentId()->getId() === $aal->getId()) {
-            $cumulMenager += $data->getNbrMenage();
-            $cumulFamille += $data->getNbrFamille();
-        }
-    }
-    $newData1[$aal->getId()] = [
-        "cumulMenage" => $cumulMenager,
-        "cumulFamille" => $cumulFamille
-    ];
-}
-
 // create new array with district id as key to calculate total of cumul menager and cumul famille
 $newData2 = [];
 foreach ($districts as $district) {
@@ -84,8 +59,8 @@ foreach ($districts as $district) {
             $allId = $aal->getId() ?? null;
             $nbrMenage += $newData[$allId]->nbrMenage ?? 0;
             $nbrFamille += $newData[$allId]->nbrFamille ?? 0;
-            $cumulMenager += $newData1[$allId]['cumulMenage'] ?? 0;
-            $cumulFamille += $newData1[$allId]['cumulFamille'] ?? 0;
+            $cumulMenager += $newData[$allId]->cumulMenage ?? 0;
+            $cumulFamille += $newData[$allId]->cumulFamille ?? 0;
         }
     }
     $newData2[$district->getId()] = [

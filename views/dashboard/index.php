@@ -8,7 +8,7 @@ ob_start();
             <div class="card ">
                 <div class="card-header pb-0 p-3">
                     <div class="d-flex justify-content-between">
-                        <h6 class="mb-2">Tableau de Bord</h6>
+                        <h6 class="mb-2">Suivi du nombre de ménages et de logements recensés.</h6>
                         <div class="form-group d-flex">
                             <input class="form-control date_collect" name="date" type="date"
                                 value="<?= $date ?? date("Y-m-d") ?>">
@@ -26,13 +26,13 @@ ob_start();
                                             AAL / CAIDAT</th>
                                         <th
                                             class="text-uppercase text-secondary text-sm font-weight-bolder opacity-7 ps-2">
-                                            Nombre de ménagère recensés</th>
+                                            Nombre de ménages recensées</th>
                                         <th
                                             class="text-uppercase text-secondary text-sm font-weight-bolder opacity-7 ps-2">
                                             Cumul</th>
                                         <th
                                             class="text-uppercase text-secondary text-sm font-weight-bolder opacity-7 ps-2">
-                                            Nombre de famille recensés</th>
+                                            Nombre de logements recensés</th>
                                         <th
                                             class="text-uppercase text-secondary text-sm font-weight-bolder opacity-7 ps-2">
                                             Cumul</th>
@@ -106,7 +106,7 @@ ob_start();
                                             </td>
                                             <td>
                                                 <p class="text-sm font-weight-bold mb-0">
-                                                    <?= $newData[$allId]->cumulMenage ?? $newData1[$allId]['cumulMenage'] ?? 0 ?>
+                                                    <?= $newData[$allId]->cumulMenage ?? 0 ?>
                                                 </p>
                                             </td>
                                             <td>
@@ -116,7 +116,7 @@ ob_start();
                                             </td>
                                             <td>
                                                 <p class="text-sm font-weight-bold mb-0">
-                                                    <?= $newData[$allId]->cumulFamille ?? $newData1[$allId]['cumulFamille'] ?? 0 ?>
+                                                    <?= $newData[$allId]->cumulFamille ?? 0 ?>
                                                 </p>
                                             </td>
                                             <td>
