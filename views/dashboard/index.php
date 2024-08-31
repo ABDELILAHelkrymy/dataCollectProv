@@ -106,7 +106,7 @@ ob_start();
                                             </td>
                                             <td>
                                                 <p class="text-sm font-weight-bold mb-0">
-                                                    <?= $newData[$allId]->cumulMenage ?? 0 ?>
+                                                    <?= $newData[$allId]->cumulMenage ?? $newData1[$allId]['cumulMenage'] ?? 0 ?>
                                                 </p>
                                             </td>
                                             <td>
@@ -116,7 +116,7 @@ ob_start();
                                             </td>
                                             <td>
                                                 <p class="text-sm font-weight-bold mb-0">
-                                                    <?= $newData[$allId]->cumulFamille ?? 0 ?>
+                                                    <?= $newData[$allId]->cumulFamille ?? $newData1[$allId]['cumulFamille'] ?? 0 ?>
                                                 </p>
                                             </td>
                                             <td>

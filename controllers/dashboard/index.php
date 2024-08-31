@@ -16,7 +16,8 @@ $aals = $aalModel->getAll();
 $dataModel = new DataModel($this->db);
 
 $today = date("Y-m-d");
-$datas = $dataModel->getByQueryDateLessThan("created_at", $date ?? $today);
+$datas = $dataModel->getByQueryDate("created_at", $date ?? $today);
+$datasForCumul = $dataModel->getByQueryDateLessThan("created_at", $date ?? $today);
 
 $agentModel = new AgentModel($this->db);
 $agents = $agentModel->getAll();
@@ -36,6 +37,11 @@ foreach ($agents as $agent) {
             $data->setAgentId($agent->getAalId());
         }
     }
+    foreach ($datasForCumul as $data) {
+        if ($data->getAgentId() === $agent->getId()) {
+            $data->setAgentId($agent->getAalId());
+        }
+    }
 }
 
 $newData = [];
@@ -45,6 +51,25 @@ foreach ($aals as $alle) {
             $newData[$alle->getId()] = $data;
         }
     }
+}
+
+$newData1 = [];
+
+foreach ($aals as $alle) {
+    $nbrMenage = 0;
+    $nbrFamille = 0;
+    $cumulMenager = 0;
+    $cumulFamille = 0;
+    foreach ($datasForCumul as $data) {
+        if ($data->getAgentId()->getId() === $alle->getId()) {
+            $cumulMenager += $data->getNbrMenage();
+            $cumulFamille += $data->getNbrFamille();
+        }
+    }
+    $newData1[$alle->getId()] = [
+        "cumulMenage" => $cumulMenager,
+        "cumulFamille" => $cumulFamille
+    ];
 }
 
 // create new array with district id as key to calculate total of cumul menager and cumul famille
@@ -59,8 +84,8 @@ foreach ($districts as $district) {
             $allId = $aal->getId() ?? null;
             $nbrMenage += $newData[$allId]->nbrMenage ?? 0;
             $nbrFamille += $newData[$allId]->nbrFamille ?? 0;
-            $cumulMenager += $newData[$allId]->cumulMenage ?? 0;
-            $cumulFamille += $newData[$allId]->cumulFamille ?? 0;
+            $cumulMenager += $newData1[$allId]['cumulMenage'] ?? 0;
+            $cumulFamille += $newData1[$allId]['cumulFamille'] ?? 0;
         }
     }
     $newData2[$district->getId()] = [
