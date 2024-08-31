@@ -45,10 +45,24 @@ foreach ($agents as $agent) {
 }
 
 $newData = [];
-foreach ($aals as $alle) {
+foreach ($aals as $aal) {
+    // Initialize sums for the current agent
+    $newData[$aal->getId()] = [
+        'nbrMenage' => 0,
+        'cumulMenage' => 0,
+        'nbrFamille' => 0,
+        'cumulFamille' => 0,
+    ];
+
     foreach ($datas as $data) {
-        if ($data->getAgentId()->getId() === $alle->getId()) {
-            $newData[$alle->getId()] = $data;
+        // Check if the agentId matches the aal id
+        if ($data->getAgentId()->getId() === $aal->getId()) {
+            // Accumulate the values for this agent
+            $newData[$aal->getId()]['nbrMenage'] += $data->getNbrMenage();
+            $newData[$aal->getId()]['cumulMenage'] = $data->getCumulMenage();
+            $newData[$aal->getId()]['nbrFamille'] += $data->getNbrFamille();
+            $newData[$aal->getId()]['cumulFamille'] = $data->getCumulFamille();
+            $newData[$aal->getId()]['observations'][] = $data->getObservations();
         }
     }
 }
@@ -82,8 +96,8 @@ foreach ($districts as $district) {
     foreach ($aals as $aal) {
         if ($aal->getDistrictId()->getId() === $district->getId()) {
             $allId = $aal->getId() ?? null;
-            $nbrMenage += $newData[$allId]->nbrMenage ?? 0;
-            $nbrFamille += $newData[$allId]->nbrFamille ?? 0;
+            $nbrMenage += $newData[$allId]['nbrMenage'] ?? 0;
+            $nbrFamille += $newData[$allId]['nbrFamille'] ?? 0;
             $cumulMenager += $newData1[$allId]['cumulMenage'] ?? 0;
             $cumulFamille += $newData1[$allId]['cumulFamille'] ?? 0;
         }

@@ -101,27 +101,29 @@ ob_start();
                                             </td>
                                             <td>
                                                 <p class="text-sm font-weight-bold mb-0">
-                                                    <?= $newData[$allId]->nbrMenage ?? 0 ?>
+                                                    <?= $newData[$allId]['nbrMenage'] ?? 0 ?>
                                                 </p>
                                             </td>
                                             <td>
                                                 <p class="text-sm font-weight-bold mb-0">
-                                                    <?= $newData[$allId]->cumulMenage ?? $newData1[$allId]['cumulMenage'] ?? 0 ?>
+                                                    <?= $newData[$allId]['cumulMenage'] ?? $newData1[$allId]['cumulMenage'] ?? 0 ?>
                                                 </p>
                                             </td>
                                             <td>
                                                 <p class="text-sm font-weight-bold mb-0">
-                                                    <?= $newData[$allId]->nbrFamille ?? 0 ?>
+                                                    <?= $newData[$allId]['nbrFamille'] ?? 0 ?>
                                                 </p>
                                             </td>
                                             <td>
                                                 <p class="text-sm font-weight-bold mb-0">
-                                                    <?= $newData[$allId]->cumulFamille ?? $newData1[$allId]['cumulFamille'] ?? 0 ?>
+                                                    <?= $newData[$allId]['cumulFamille'] ?? $newData1[$allId]['cumulFamille'] ?? 0 ?>
                                                 </p>
                                             </td>
                                             <td>
-                                                <p class="text-sm font-weight-bold mb-0 text-warning">
-                                                    <?= $newData[$allId]->observations ?? "" ?>
+                                                <p class="text-xxs mb-0 text-warning">
+                                                    <?php foreach ($newData[$allId]['observations'] ?? [] as $observation): ?>
+                                                        <?= $observation ?><br>
+                                                    <?php endforeach; ?>
                                                 </p>
                                             </td>
                                         </tr>
