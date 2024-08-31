@@ -27,19 +27,35 @@ function addData($request, $db)
         ]
     ]);
 
+    $agent = $agentModel->getByQuery([
+        "aal_id" => [
+            "op" => "=",
+            "value" => $aal_id,
+        ]
+    ]);
+    // get all data by agent id
+    $allDataOfAal = [];
+    foreach ($agent as $ag) {
+        $allDataOfAal[] = $dataModel->getByQuery([
+            "agent_id" => [
+                "op" => "=",
+                "value" => $ag->getId(),
+            ]
+        ]);
+    }
+
+    $allfilteredData = [];
+    foreach ($allDataOfAal as $data) {
+        if ($data) {
+            $allfilteredData[] = end($data);
+        }
+    }
+
     if ($request->isPost()) {
         $data = new Data($request->getPost());
 
-        $agent = $agentModel->getById($data->getAgentId());
-        $dataNew = $dataModel->getByQuery([
-            "agent_id" => [
-                "op" => "=",
-                "value" => $agent->getId(),
-            ]
-        ]);
-
+        $dataNew = $allfilteredData;
         $dataNew = end($dataNew);
-
         if ($dataNew) {
             $data->setCumulMenage($dataNew->getCumulMenage() + $data->getNbrMenage());
             $data->setCumulFamille($dataNew->getCumulFamille() + $data->getNbrFamille());
@@ -49,10 +65,10 @@ function addData($request, $db)
         }
         try {
             $dataModel->create($data->toArray());
-            $viewVars['message'] = "تمت الإضافة بنجاح";
+            $_SESSION["message"] = "تمت الإضافة بنجاح";
             header("Location: /dataCollect");
         } catch (Exception $e) {
-            $viewVars['error'] = "حدث خطأ أثناء الإضافة";
+            $_SESSION['error'] = "حدث خطأ أثناء الإضافة";
         }
     }
 

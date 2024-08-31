@@ -16,7 +16,7 @@ $aals = $aalModel->getAll();
 $dataModel = new DataModel($this->db);
 
 $today = date("Y-m-d");
-$datas = $dataModel->getByQueryDate("created_at", $date ?? $today);
+$datas = $dataModel->getByQueryDateLessThan("created_at", $date ?? $today);
 
 $agentModel = new AgentModel($this->db);
 $agents = $agentModel->getAll();
