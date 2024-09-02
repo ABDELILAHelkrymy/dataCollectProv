@@ -16,4 +16,5 @@ class Data extends Entity
     protected $cumulFamille;
     protected $observations;
     protected $agentId;
+    protected $createdAt;
 }

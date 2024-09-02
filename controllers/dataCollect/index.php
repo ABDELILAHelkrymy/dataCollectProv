@@ -20,6 +20,7 @@ function addData($request, $db)
     $dataModel = new DataModel($db);
     $agentModel = new AgentModel($db);
     $aal_id = $_SESSION['user']['aal_id'];
+    $viewVars["aal_id"] = $aal_id;
     $viewVars['agents'] = $agentModel->getByQuery([
         "aal_id" => [
             "op" => "=",
@@ -43,6 +44,7 @@ function addData($request, $db)
             ]
         ]);
     }
+
 
     $allfilteredData = [];
     foreach ($allDataOfAal as $data) {
