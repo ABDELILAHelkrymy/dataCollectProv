@@ -9,7 +9,7 @@ ob_start();
             <div class="card mb-4 text-end">
                 <div class="card-header pb-0 mb-3">
                     <div class="row">
-                        <h3 class="mb-0">ملأ البيانات الخاصة بإحصاء السكن والسكنى</h3>
+                        <h3 class="mb-0">ملأ البيانات الخاصة بالإحصاء العام للسكن والسكنى</h3>
                     </div>
                 </div>
                 <div class="card">

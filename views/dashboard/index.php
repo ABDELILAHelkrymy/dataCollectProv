@@ -26,13 +26,13 @@ ob_start();
                                             AAL / CAIDAT</th>
                                         <th
                                             class="text-uppercase text-secondary text-sm font-weight-bolder opacity-7 ps-2">
-                                            Nombre de ménages recensées</th>
+                                            Nombre de logements recensés</th>
                                         <th
                                             class="text-uppercase text-secondary text-sm font-weight-bolder opacity-7 ps-2">
                                             Cumul</th>
                                         <th
                                             class="text-uppercase text-secondary text-sm font-weight-bolder opacity-7 ps-2">
-                                            Nombre de logements recensés</th>
+                                            Nombre de ménages recensées</th>
                                         <th
                                             class="text-uppercase text-secondary text-sm font-weight-bolder opacity-7 ps-2">
                                             Cumul</th>
@@ -106,7 +106,7 @@ ob_start();
                                             </td>
                                             <td>
                                                 <p class="text-sm font-weight-bold mb-0">
-                                                    <?= $newData[$allId]['cumulMenage'] ?? $newData1[$allId]['cumulMenage'] ?? 0 ?>
+                                                    <?=$newData1[$allId]['cumulMenage'] ?? 0 ?>
                                                 </p>
                                             </td>
                                             <td>
@@ -116,13 +116,13 @@ ob_start();
                                             </td>
                                             <td>
                                                 <p class="text-sm font-weight-bold mb-0">
-                                                    <?= $newData[$allId]['cumulFamille'] ?? $newData1[$allId]['cumulFamille'] ?? 0 ?>
+                                                    <?= $newData1[$allId]['cumulFamille'] ?? 0 ?>
                                                 </p>
                                             </td>
                                             <td>
                                                 <p class="text-xxs mb-0 text-warning">
                                                     <?php foreach ($newData[$allId]['observations'] ?? [] as $observation): ?>
-                                                        <?= $observation ?><br>
+                                                        <?= $observation ? $observation . "<br>" : ""?> 
                                                     <?php endforeach; ?>
                                                 </p>
                                             </td>
