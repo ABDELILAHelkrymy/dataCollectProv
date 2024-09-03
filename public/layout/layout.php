@@ -37,7 +37,6 @@
     $route = explode('/', $_SERVER['REQUEST_URI'])[1];
     if (isset($_SESSION['username'])) {
         echo "<div class='min-height-300 bg-primary position-absolute w-100'></div>";
-        include_once APP_ROOT . '/public/layout/sidebar.php';
     }
     ?>
     <main class="main-content position-relative border-radius-lg ">

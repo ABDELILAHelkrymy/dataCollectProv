@@ -132,10 +132,6 @@
   background-color: var(--bs-yellow);
 }
 
-.table-responsive {
-  max-height: 300px;
-}
-
 .sort-icon {
   cursor: pointer;
 }
@@ -182,4 +178,68 @@
 
 .materiel-state {
   cursor: pointer;
+}
+
+.bg-1-dark {
+  background-color: #43800a !important;
+}
+
+.bg-1 {
+  background-color: #d0f5a5 !important;
+}
+
+.bg-2-dark {
+  background-color: #be5c5c !important;
+}
+
+.bg-2 {
+  background-color: #f5d0d0 !important; /* Light Red */
+}
+
+.bg-3-dark {
+  background-color: #56a4c9 !important;
+}
+
+.bg-3 {
+  background-color: #d0e8f5 !important; /* Light Blue */
+}
+
+.bg-4-dark {
+  background-color: #c58133 !important;
+}
+
+.bg-4 {
+  background-color: #f5cf8a !important; /* Light Beige */
+}
+
+.bg-5-dark {
+  background-color: #c054ac !important;
+}
+
+.bg-5 {
+  background-color: #f5d0ed !important; /* Light Pink */
+}
+
+.bg-6-dark {
+  background-color: #9e84e0 !important;
+}
+
+.bg-6 {
+  background-color: #e0d0f5 !important; /* Light Purple */
+}
+
+.bg-7-dark {
+  background-color: #beb458 !important;
+}
+
+.bg-7 {
+  background-color: #f5f0d0 !important; /* Light Yellow */
+}
+
+.bg-8-dark {
+  background-color: #58beb6 !important;
+}
+
+.bg-8 {
+  background-color: #d0f5f0 !important; /* Light Teal */
 }

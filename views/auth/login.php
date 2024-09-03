@@ -5,7 +5,7 @@ ob_start();
     <section>
         <div class="page-header min-vh-100">
             <div class="container">
-                <div class="row">
+                <div class="row justify-content-center">
                     <div class="col-xl-4 col-lg-5 col-md-7 d-flex flex-column mx-lg-0 mx-auto">
                         <div class="card card-plain">
                             <div class="d-flex justify-content-center w-full">
@@ -41,19 +41,6 @@ ob_start();
                                     <?php echo isset($error) ? $error : ''; ?>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                    <div
-                        class="col-6 d-lg-flex d-none h-100 my-auto pe-0 position-absolute top-0 end-0 text-center justify-content-center flex-column align-items-center">
-                        <div class="position-relative bg-gradient-secondary h-100 m-3 px-7 border-radius-lg d-flex flex-column justify-content-center overflow-hidden">
-                            <span class="mask bg-gradient-secondary opacity-2"></span>
-                        <div class="text-center">
-                        <img src="/assets/img/logos/prov-larache-logo.png" alt="logo" width="340" height="160">
-                        </div>
-                        <br/><br/>
-                        <h1 class="font-weight-bolder text-white">Courriers</h1>
-                        <h4 class="font-weight-bolder text-light">Outil de Gestion et d'archivage des courriers du provine de larache.</h4>
-                        <br/><br/>
                         </div>
                     </div>
                 </div>
