@@ -1133,4 +1133,13 @@ $(document).ready(function () {
     date_collect = $(this).val();
     window.location.href = `/dashboard?q=${date_collect}`;
   });
+
+  const nbrDistrict = 8;
+  
+const colors = ["bg-primary", "bg-secondary", "bg-success", "bg-info", "bg-warning", "bg-danger", "bg-light", "bg-gradient-success"]
+
+  for (let i = 1; i <= nbrDistrict; i++) {
+    $('.bg'+i).addClass('bg-'+i);
+    $('.bg-dark'+i).addClass('bg-'+i+'-dark');
+  }
 });

@@ -4,7 +4,7 @@ ob_start();
 ?>
 <div class="container-fluid py-4">
     <div class="row mt-4 justify-content-center">
-        <div class="col-12 mb-lg-0 mb-4">
+        <div class="col-md-12 col-lg-10 mb-lg-0 mb-4">
             <div class="card ">
                 <div class="card-header pb-0 p-3">
                     <div class="d-flex justify-content-between">
@@ -22,23 +22,20 @@ ob_start();
                                 <thead>
                                     <tr>
                                         <th
-                                            class="text-uppercase text-secondary text-sm font-weight-bolder opacity-7 ps-2">
+                                            class="text-uppercase text-secondary text-sm font-weight-bolder opacity-7 ps-2 text-center">
                                             AAL / CAIDAT</th>
                                         <th
-                                            class="text-uppercase text-secondary text-sm font-weight-bolder opacity-7 ps-2">
-                                            Nombre de logements recensés</th>
+                                            class="text-uppercase text-secondary text-sm font-weight-bolder opacity-7 ps-2 text-center">
+                                            Nombre total de ménages prévisionnel estimatif</th>
                                         <th
-                                            class="text-uppercase text-secondary text-sm font-weight-bolder opacity-7 ps-2">
-                                            Cumul</th>
-                                        <th
-                                            class="text-uppercase text-secondary text-sm font-weight-bolder opacity-7 ps-2">
+                                            class="text-uppercase text-secondary text-sm font-weight-bolder opacity-7 ps-2 text-center">
                                             Nombre de ménages recensées</th>
                                         <th
-                                            class="text-uppercase text-secondary text-sm font-weight-bolder opacity-7 ps-2">
+                                            class="text-uppercase text-secondary text-sm font-weight-bolder opacity-7 ps-2 text-center">
                                             Cumul</th>
                                         <th
-                                            class="text-uppercase text-secondary text-sm font-weight-bolder opacity-7 ps-2">
-                                            Observations</th>
+                                            class="text-uppercase text-secondary text-sm font-weight-bolder opacity-7 ps-2 text-center">
+                                            Pourcentage</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -51,36 +48,35 @@ ob_start();
                                             if ($currentDistrict !== null) {
                                                 // Print the total for the previous district
                                                 ?>
-                                                <tr class="bg-success">
+                                                <tr class="<?='bg-dark'.$currentDistrictId?>">
                                                     <td>
                                                         <div class="d-flex px-2 py-1 justify-content-center">
-                                                            <div class="d-flex flex-column justify-content-center">
-                                                                <h6 class="mb-0 text-sm"><?= $currentDistrict ?> (Total)
+                                                            <div class="text-md  text-bold font-weight-bold mb-0 text-center">
+                                                                <h6 class="mb-0 text-white "><?= $currentDistrict ?> (Total)
                                                                 </h6>
                                                             </div>
                                                         </div>
                                                     </td>
                                                     <td>
-                                                        <p class="text-md text-white text-bold font-weight-bold mb-0">
-                                                            <?= $newData2[$currentDistrictId]["nbrMenage"] ?? 0 ?>
-                                                        </p>
+                                                        <h5 class="text-md text-white  text-bold font-weight-bold mb-0 text-center">
+                                                            <?= $newData2[$currentDistrictId]["cumulFamilleTotalProvisoire"] ?? 0 ?>
+                                                        </h5>
                                                     </td>
                                                     <td>
-                                                        <p class="text-md text-white text-bold font-weight-bold mb-0">
-                                                            <?= $newData2[$currentDistrictId]["cumulMenager"] ?? 0 ?>
-                                                        </p>
-                                                    </td>
-                                                    <td>
-                                                        <p class="text-md text-white text-bold font-weight-bold mb-0">
+                                                        <h5 class="text-md text-white  text-bold font-weight-bold mb-0 text-center">
                                                             <?= $newData2[$currentDistrictId]["nbrFamille"] ?? 0 ?>
-                                                        </p>
+                                                        </h5>
                                                     </td>
                                                     <td>
-                                                        <p class="text-md text-white text-bold font-weight-bold mb-0">
+                                                        <h5 class="text-md text-white  text-bold font-weight-bold mb-0 text-center">
                                                             <?= $newData2[$currentDistrictId]["cumulFamille"] ?? 0 ?>
-                                                        </p>
+                                                        </h5>
                                                     </td>
-                                                    <td></td>
+                                                    <td>
+                                                        <h5 class="text-md text-white  text-bold font-weight-bold mb-0 text-center">
+                                                            <?= $newData2[$currentDistrictId]["cumulePourcentage"] ?? 0 ?>%
+                                                        </h5>
+                                                    </td>
                                                 </tr>
                                                 <?php
                                             }
@@ -89,7 +85,7 @@ ob_start();
                                         }
                                         ?>
                                         <tr>
-                                            <td>
+                                            <td class="<?='bg'.$currentDistrictId?>">
                                                 <div class="d-flex px-2 py-1">
                                                     <div class="d-flex flex-column justify-content-center">
                                                         <h6 class="mb-0 text-sm"><?= $aal->getName() ?></h6>
@@ -100,30 +96,23 @@ ob_start();
                                                 </div>
                                             </td>
                                             <td>
-                                                <p class="text-sm font-weight-bold mb-0">
-                                                    <?= $newData[$allId]['nbrMenage'] ?? 0 ?>
+                                                <p class="text-sm font-weight-bold mb-0 text-center">
+                                                    <?= $nbrFamilleTotalProvisoireByAal[$allId] ?? 0 ?>
                                                 </p>
                                             </td>
                                             <td>
-                                                <p class="text-sm font-weight-bold mb-0">
-                                                    <?=$newData1[$allId]['cumulMenage'] ?? 0 ?>
-                                                </p>
-                                            </td>
-                                            <td>
-                                                <p class="text-sm font-weight-bold mb-0">
+                                                <p class="text-sm font-weight-bold mb-0 text-center">
                                                     <?= $newData[$allId]['nbrFamille'] ?? 0 ?>
                                                 </p>
                                             </td>
                                             <td>
-                                                <p class="text-sm font-weight-bold mb-0">
+                                                <p class="text-sm font-weight-bold mb-0 text-center">
                                                     <?= $newData1[$allId]['cumulFamille'] ?? 0 ?>
                                                 </p>
                                             </td>
                                             <td>
-                                                <p class="text-xxs mb-0 text-warning">
-                                                    <?php foreach ($newData[$allId]['observations'] ?? [] as $observation): ?>
-                                                        <?= $observation ? $observation . "<br>" : ""?> 
-                                                    <?php endforeach; ?>
+                                                <p class="text-sm font-weight-bold mb-0 text-center">
+                                                    <?= $newData1[$allId]['percentage'] ?? 0 ?>%
                                                 </p>
                                             </td>
                                         </tr>
@@ -133,35 +122,34 @@ ob_start();
                                     // Print the total for the last district
                                     if ($currentDistrict !== null) {
                                         ?>
-                                        <tr class="bg-success">
+                                        <tr class="<?='bg-dark'.$currentDistrictId?>">
                                             <td>
                                                 <div class="d-flex px-2 py-1 justify-content-center">
                                                     <div class="d-flex flex-column justify-content-center">
-                                                        <h6 class="mb-0 text-sm"><?= $currentDistrict ?> (Total)</h6>
+                                                        <h6 class="mb-0 text-white  text-sm"><?= $currentDistrict ?> (Total)</h6>
                                                     </div>
                                                 </div>
                                             </td>
                                             <td>
-                                                <p class="text-md text-white font-weight-bold mb-0">
-                                                    <?= $newData2[$currentDistrictId]["nbrMenage"] ?? 0 ?>
+                                                <p class="text-md text-white  font-weight-bold mb-0 text-center">
+                                                    <?= $newData2[$currentDistrictId]["cumulFamilleTotalProvisoire"] ?? 0 ?>
                                                 </p>
                                             </td>
                                             <td>
-                                                <p class="text-md text-white font-weight-bold mb-0">
-                                                    <?= $newData2[$currentDistrictId]["cumulMenager"] ?? 0 ?>
-                                                </p>
-                                            </td>
-                                            <td>
-                                                <p class="text-md text-white font-weight-bold mb-0">
+                                                <p class="text-md text-white  font-weight-bold mb-0 text-center">
                                                     <?= $newData2[$currentDistrictId]["nbrFamille"] ?? 0 ?>
                                                 </p>
                                             </td>
                                             <td>
-                                                <p class="text-md text-whitefont-weight-bold mb-0">
+                                                <p class="text-md  text-white  font-weight-bold mb-0 text-center">
                                                     <?= $newData2[$currentDistrictId]["cumulFamille"] ?? 0 ?>
                                                 </p>
                                             </td>
-                                            <td></td>
+                                            <td>
+                                                <p class="text-md text-white  font-weight-bold mb-0 text-center">
+                                                    <?= $newData2[$currentDistrictId]["cumulePourcentage"] ?? 0 ?>%
+                                                </p>
+                                            </td>
                                         </tr>
                                         <?php
                                     }
@@ -177,26 +165,25 @@ ob_start();
                                             </div>
                                         </td>
                                         <td>
-                                            <p class="text-md text-white font-weight-bold mb-0">
-                                                <?= $total["nbrMenage"] ?>
+                                            <p class="text-md text-white font-weight-bold mb-0 text-center">
+                                                <?= $total["nbrFamilleTotalProvisoire"] ?>
                                             </p>
                                         </td>
                                         <td>
-                                            <p class="text-md text-white font-weight-bold mb-0">
-                                                <?= $total["cumulMenager"] ?>
-                                            </p>
-                                        </td>
-                                        <td>
-                                            <p class="text-md text-white font-weight-bold mb-0">
+                                            <p class="text-md text-white font-weight-bold mb-0 text-center">
                                                 <?= $total["nbrFamille"] ?>
                                             </p>
                                         </td>
                                         <td>
-                                            <p class="text-md text-white font-weight-bold mb-0">
+                                            <p class="text-md text-white font-weight-bold mb-0 text-center">
                                                 <?= $total["cumulFamille"] ?>
                                             </p>
                                         </td>
-                                        <td></td>
+                                        <td>
+                                            <p class="text-md text-white font-weight-bold mb-0 text-center">
+                                                <?= $total["cumulePourcentageTotal"] ?>%
+                                            </p>
+                                        </td>
                                     </tr>
                                 </tbody>
                             </table>

@@ -15,5 +15,8 @@ return [
         "/dashboard" => "dashboard/index",
         "/auth/login" => "auth/login",
         "/dataCollect" => "dataCollect/index",
+        "/dataCollect/modifier" => "dataCollect/index",
+        "/dataCollect/details/:id" => "dataCollect/details",
+        "/dataCollect/modifier/:id" => "dataCollect/modifier",
     ],
 ];
